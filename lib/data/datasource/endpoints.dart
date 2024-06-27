@@ -2,6 +2,7 @@ import 'package:bloc_blog/data/datasource/dio_client.dart';
 
 enum EndPoints {
   login,
+  home,
 }
 
 extension EndPointsExtension on EndPoints {
@@ -11,6 +12,9 @@ extension EndPointsExtension on EndPoints {
     switch (this) {
       case EndPoints.login:
         path = "login";
+        break;
+      case EndPoints.home:
+        path = "get-all-blogs";
         break;
     }
 
@@ -24,6 +28,9 @@ extension EndPointsExtension on EndPoints {
       case EndPoints.login:
         method = HttpMethod.post;
         break;
+      case EndPoints.home:
+        method = HttpMethod.get;
+        break;
     }
 
     return method;
@@ -35,6 +42,9 @@ extension EndPointsExtension on EndPoints {
     switch (this) {
       case EndPoints.login:
         hasToken = false;
+        break;
+      case EndPoints.home:
+        hasToken = true;
         break;
     }
 

@@ -1,4 +1,4 @@
-import 'package:bloc_blog/presentation/pages/home/home.dart';
+import 'package:bloc_blog/presentation/pages/home/bloc/home_bloc.dart';
 import 'package:bloc_blog/presentation/pages/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,10 +17,13 @@ final GoRouter _router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: '/home',
+          path: 'home',
           name: 'home',
           builder: (BuildContext context, GoRouterState state) {
-            return const HomePage();
+            return BlocProvider(
+              create: (context) => HomeBloc(),
+              child: const HomePage(),
+            );
           },
         ),
         GoRoute(

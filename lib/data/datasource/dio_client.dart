@@ -1,6 +1,9 @@
 import 'package:bloc_blog/constants.dart';
 import 'package:bloc_blog/data/datasource/endpoints.dart';
+import 'package:bloc_blog/data/models/res/login_res_model.dart';
+import 'package:bloc_blog/data/models/res/login_token.dart';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' as G;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
@@ -29,12 +32,15 @@ class DioClient {
       _dio.options.headers.addAll(headers);
     }
 
-    // if (endPoints.hasToken()) {
-    //   String _token = G.Get.find<Model>().token;
-    //   if (_token.isNotEmpty) {
-    //     _dio.options.headers.addAll({"Authorization": "Bearer $_token"});
-    //   }
-    // }
+    if (endPoints.hasToken()) {
+      String _token = G.Get.find<LoginTokenRes>().token ?? "";
+      print("token $_token");
+      if (_token.isNotEmpty) {
+        _dio.options.headers.addAll({
+          "auth-token": {_token}
+        });
+      }
+    }
 
     try {
       switch (endPoints.method()) {

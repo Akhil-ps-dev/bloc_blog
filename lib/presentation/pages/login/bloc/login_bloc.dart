@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:bloc_blog/data/models/req/login_req_model.dart';
 import 'package:bloc_blog/data/repository/login_repository.dart';
-import 'package:bloc_blog/presentation/pages/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
